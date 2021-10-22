@@ -1,6 +1,9 @@
 import React from 'react';
 import {fireEvent, render, screen, within} from '@testing-library/react';
 import {Users} from 'Users.component';
+import nock from 'nock';
+
+const httpMock = nock('http://localhost');
 
 test('show header', () => {
     render(<Users/>);
@@ -18,13 +21,19 @@ test('show load button', () => {
     expect(loadButton).toBeInTheDocument();
 });
 
-test('show users', () => {
+test('load users after click', async () => {
+    httpMock.get('/users/').reply(200,[
+        {id: '1', name: 'Jan', surname: 'Kowalski'},
+        {id: '2', name: 'Piotr', surname: 'Nowak'},
+        {id: '3', name: 'Stefan', surname: 'Wyczesany'},
+    ]);
     render(<Users/>);
 
-    const firstRow = screen.getAllByRole('row')[1];
-    const secondRow = screen.getAllByRole('row')[2];
-    expect(within(firstRow).getAllByRole('cell')[0]).toHaveTextContent('Jan');
-    expect(within(firstRow).getAllByRole('cell')[1]).toHaveTextContent('Kowalski');
-    expect(within(secondRow).getAllByRole('cell')[0]).toHaveTextContent('Piotr');
-    expect(within(secondRow).getAllByRole('cell')[1]).toHaveTextContent('Nowak');
+    fireEvent.click(screen.getByRole('button', {name: /załaduj/i}));
+
+    const tableRows = await screen.findAllByRole('row');
+    expect(tableRows).toHaveLength(3);
+    expect(within(tableRows[0]).getAllByRole('cell')[0]).toHaveTextContent('Jan');
+    expect(within(tableRows[1]).getAllByRole('cell')[0]).toHaveTextContent('Piotr');
+    expect(within(tableRows[2]).getAllByRole('cell')[0]).toHaveTextContent('Stefan');
 });

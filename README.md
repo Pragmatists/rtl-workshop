@@ -34,7 +34,9 @@ Korzysta z accessibility tree i api, wystawiane jest przez silnik (w Chrome "Ele
 
 within().
 
-### Asercje 
+### Asercje
+
+toHaveTextContent, toHaveLength
 
 ## Eventy 
 
@@ -42,4 +44,9 @@ within().
 
 fireEvent.method(element)
 
-### findBy, waitFor, axios, serwer
+### axios, serwer, findBy, prawidlowe assercje
+
+Findby zwraca promise, korelacja pomiedzy findby a getby i flickerujące testy.
+
+### waitFor
+
