@@ -28,4 +28,18 @@ Querujemy tak jak byśmy sami konsumowali wizualnie stronę
 
 ### getByRole 
 
-Korzysta z accessibility tree i api, wystawiane jest przez silnik (w Chrome "Elements" -> "Accesibility").  
+Korzysta z accessibility tree i api, wystawiane jest przez silnik (w Chrome "Elements" -> "Accesibility").
+
+### Within
+
+within().
+
+### Asercje 
+
+## Eventy 
+
+### Firing events
+
+fireEvent.method(element)
+
+### findBy, waitFor, axios, serwer
