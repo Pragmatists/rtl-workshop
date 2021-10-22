@@ -48,5 +48,8 @@ fireEvent.method(element)
 
 Findby zwraca promise, korelacja pomiedzy findby a getby i flickerujące testy.
 
-### waitFor
+### waitFor, waitForElementToBeRemoved
+
+Staramy się nie umieszczać wielu asercji w waitFor - ciezko analizowac co jest nie tak. 
+Usuwanie uzytkownika (waitForElementToBeRemoved).
 

@@ -15,6 +15,10 @@ export const Users = () => {
             })
     }
 
+    function deleteUser(id: number) {
+        setTimeout(() => setUsers(prevUsers => prevUsers.filter(user => user.id !== id)), 500);
+    }
+
     return (
         <div>
             <div className="users">
@@ -33,6 +37,7 @@ export const Users = () => {
                                     <tr key={user.id}>
                                         <td>{user.name}</td>
                                         <td>{user.surname}</td>
+                                        <td><button onClick={() => deleteUser(user.id)}>delete</button></td>
                                     </tr>
                                 ))
                         }
