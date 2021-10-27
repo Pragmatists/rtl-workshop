@@ -11,15 +11,15 @@
 
 ### getBy...
 
-Zwraca zmatchowanego node'a lub error gdy go nie ma albo matchuje się więcej niż 1 (tutaj getAllBy)
+Zwraca zmatchowanego node'a lub error, gdy go nie ma albo matchuje się więcej niż 1 (tutaj getAllBy)
 
 ### queryBy...
 
-Zwraca zmatchowanego node'a lub null gdy go nie ma. Error w przypadku gdy jeden niż więcej element.
+Zwraca zmatchowanego node'a lub null, gdy go nie ma. Error w przypadku gdy jeden niż więcej element.
 
 ### findBy...
 
-Zwraca promise'a, który zresolwuje się gdy element zostanie znaleziony lub zrejectuje jak nie znajdzie albo 
+Zwraca promise'a, który zresolwuje się, gdy element zostanie znaleziony lub zrejectuje jak nie znajdzie albo 
 znajdzie więcej niż 1 element. Domyślny timeout to 1000ms.  
 
 ## Priorytety querowania / Jak querować
@@ -46,10 +46,10 @@ fireEvent.method(element)
 
 ### axios, serwer, findBy, prawidlowe assercje
 
-Findby zwraca promise, korelacja pomiedzy findby a getby i flickerujące testy.
+Findby zwraca promise, korelacja pomiędzy findby a getby i flickerujące testy.
 
 ### waitFor, waitForElementToBeRemoved
 
-Staramy się nie umieszczać wielu asercji w waitFor - ciezko analizowac co jest nie tak. 
-Usuwanie uzytkownika (waitForElementToBeRemoved).
+Staramy się nie umieszczać wielu asercji w waitFor - ciężko analizować co jest nie tak. 
+Usuwanie użytkownika (waitForElementToBeRemoved).
 
