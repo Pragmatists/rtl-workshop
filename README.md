@@ -1,9 +1,38 @@
 # Czemu RTL
 
+## Problem ktory chcemy rozwiazac
 
+Chcemy napisac utrzymywalne testy, które dają wysoką pewność tego, że nasze komponenty działają dla użytkownika.
+Chcemy uciekać od szczegółów implementacyjnych. Chcemy być pewni, że refaktor wnętrza komponentów nie doprowadzi do wybuchu
+naszych testów. 
+Trochę brzmi jak blackboxowe testy i w zasadzie się to zgadza. (Porównanie do testów backendowych)
+
+Założenia biblioteki są takie żeby testy powstawały w zasadzie tak w jaki sposób użytkownik posługuje się 
+i weryfikuje prawidłowość działania komponentów na stronie. Stąd w centrum RTL stoi bardzo rozbudowane sposób querowania
+drzewa DOM.
+
+TEchnicznie jest to biblioteka, w której sercu jest DOM Testing Library a w przypadku reacta jest zbudowana na
+react-dom oraz react-dom/test-utils.
+
+Istnieją inne implementacje TEsting Library dla chociażby Vue czy Angulara. W zasadzie kod testowy, który napiszemy 
+byłby 1 do 1 przenaszalny jeżeli nagle pod spodem byśmy wymienili framework który testujemy (oczywiście oprócz metod
+stricte związany z wyrenderowaniem komponentu).
 
 # RTL vs Enzyme
 
+Główne różnice:
+
+* filozofia testowania - enzyme pozwala na testowanie internali (stan, propsy) i niektórzy namawiają do takiego testowania 
+podczas gdy rtl uniemożliwia taką formę testowania. Jak już wspomnieliśmy RTL stara się być tak jak użytkownik
+  
+* shollow vs deep rendering - możliwe w enyzmie ze względu na filozofię, w RTL niemożliwe
+
+* enzyme pozwala testować internals ale też pozwala operować na DOM. RTL tylko DOM i skupienei się na tej filozofii 
+powoduje że querowanie jest rozbudowane i stoi za nim pewien koncept.
+  
+* setup - wydaje sie prostszy w RTL
+
+* czytelność testów - ocenimy to ;-)
 
 ## Typy queries
 
@@ -93,8 +122,6 @@ ArialabeledBy na tabelce oraz na inpucie
 
 precision, normalization
 
-przykladowy html
-
 ## debug
 
 screen.debug(), window.document
@@ -106,4 +133,4 @@ Test na to - TEST !!
 
 ## act 
 
-TEST i przykladzik !!
+wspomniec
