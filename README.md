@@ -75,19 +75,19 @@ Wspomniec
 
 Findby zwraca promise - przypomnienie. 
 Czasami findby pozwala nam wprowadzić komponent w "stan ustalony" ale może to powodować że pozbycie się asercji 
-nagle zielony test przerodzi w czerwony (prawie flickerujące testy :D). Ulatwia zapis ale raczej odra
+nagle zielony test przerodzi w czerwony (prawie flickerujące testy :D). Ulatwia zapis ale powinno byc uzywane z 
+pelna swiadomoscia.
 
 ### waitFor, waitForElementToBeRemoved
 
 Tylko assercje tutaj - odpalane wiele razy wiec nie powinno zmieniac stanu.
-Staramy się nie umieszczać wielu asercji w waitFor - ciezko analizowac co jest nie tak oraz możemy szybciej 
-sfailować (np. jeżeli weryfikujemy).
+Staramy się nie umieszczać wielu asercji w waitFor gdyż wielokrotnie sprawdzamy to samo co już jest spełnione.
 Usuwanie uzytkownika (waitForElementToBeRemoved).
-Pusty waitFor zrobi robotę ale to na pewno nie o to chodzi.
+Pusty waitFor zrobi robotę ale to na pewno nie o to chodzi (przyklad).
 
 ## getByLabelText
 
-arialabeledBy - przykladowy html
+ArialabeledBy na tabelce oraz na inpucie
 
 ## textMatch !!!
 
@@ -97,7 +97,7 @@ przykladowy html
 
 ## debug
 
-screen.debug()
+screen.debug(), window.document
 
 ## findBy vs waitFor - jednak nie to samo
 

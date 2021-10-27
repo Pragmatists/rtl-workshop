@@ -31,11 +31,11 @@ test('load users after click', async () => {
 
     fireEvent.click(screen.getByRole('button', {name: /załaduj/i}));
 
-    const tableRows = await screen.findAllByRole('row');
-    expect(tableRows).toHaveLength(3);
-    expect(within(tableRows[0]).getAllByRole('cell')[0]).toHaveTextContent('Jan');
-    expect(within(tableRows[1]).getAllByRole('cell')[0]).toHaveTextContent('Piotr');
-    expect(within(tableRows[2]).getAllByRole('cell')[0]).toHaveTextContent('Stefan');
+    const rows = await within(await screen.findByLabelText('Użytkownicy')).findAllByRole('row');
+    expect(rows).toHaveLength(3);
+    expect(within(rows[0]).getAllByRole('cell')[0]).toHaveTextContent('Jan');
+    expect(within(rows[1]).getAllByRole('cell')[0]).toHaveTextContent('Piotr');
+    expect(within(rows[2]).getAllByRole('cell')[0]).toHaveTextContent('Stefan');
 });
 
 test('load users after click - wait for version', async () => {
@@ -49,10 +49,12 @@ test('load users after click - wait for version', async () => {
     fireEvent.click(screen.getByRole('button', {name: /załaduj/i}));
 
     await waitFor(() => {
-        expect(screen.getAllByRole('row')).toHaveLength(3);
-        expect(within(screen.getAllByRole('row')[0]).getAllByRole('cell')[0]).toHaveTextContent('Jan');
-        expect(within(screen.getAllByRole('row')[1]).getAllByRole('cell')[0]).toHaveTextContent('Piotr');
-        expect(within(screen.getAllByRole('row')[2]).getAllByRole('cell')[0]).toHaveTextContent('Stefan');
+        const table = screen.getByLabelText('Użytkownicy')
+        const rows = within(table).getAllByRole('row');
+        expect(rows).toHaveLength(3);
+        expect(within(rows[0]).getAllByRole('cell')[0]).toHaveTextContent('Jan');
+        expect(within(rows[1]).getAllByRole('cell')[0]).toHaveTextContent('Piotr');
+        expect(within(rows[2]).getAllByRole('cell')[0]).toHaveTextContent('Stefan');
     });
 });
 
@@ -63,9 +65,22 @@ test('remove user', async () => {
     ]);
     render(<Users/>);
     fireEvent.click(screen.getByRole('button', {name: /załaduj/i}));
-    await waitFor(() => expect(screen.getAllByRole('row')).toHaveLength(2));
+    await waitFor(() => {
+        const table = screen.getByLabelText('Użytkownicy');
+        expect(within(table).getAllByRole('row')).toHaveLength(2);
+    });
 
-    fireEvent.click(within(screen.getAllByRole('row')[0]).getByRole('button', {name: /delete/i}));
+    const table = screen.getByLabelText('Użytkownicy');
+    const row = within(table).getAllByRole('row');
+    fireEvent.click(within(row[0]).getByRole('button', {name: /delete/i}));
 
     await waitForElementToBeRemoved(() => screen.queryByText('Kowalski'));
+});
+
+test('label by for input', () => {
+    render(<Users/>);
+
+    const input = screen.getByLabelText(/Nazwa użytkownika/i);
+
+    expect(input).toBeInTheDocument();
 });

@@ -44,6 +44,17 @@ export const Users = () => {
                     </tbody>
                 </table>
             </div>
+            <div>
+                <table>
+                    <tbody>
+                        <tr><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <label htmlFor="username">Nazwa użytkownika</label>
+                <input id="username"/>
+            </div>
         </div>
     );
 }
